@@ -33,7 +33,23 @@
 			},
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Sugam",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dishName\":\"Samosa\",\r\n    \"servesPeople\":\"10\",\r\n    \"availableQuantity\":\"20\",\r\n    \"pricePerItem\": 10,\r\n    \"dishType\": \"Starter\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3500/addDish"
 			},
 			"response": []
 		},
@@ -45,7 +61,23 @@
 			},
 			"request": {
 				"method": "DELETE",
-				"header": []
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Sugam",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dishName\":\"Samosa\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3500/deleteDish"
 			},
 			"response": []
 		},
@@ -57,7 +89,23 @@
 			},
 			"request": {
 				"method": "PUT",
-				"header": []
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Sugam",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dishName\":\"Roti\",\r\n    \"availableQuantity\":\"5\",\r\n    \"pricePerItem\":\"10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3500/updateDish"
 			},
 			"response": []
 		},
