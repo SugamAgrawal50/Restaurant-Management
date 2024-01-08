@@ -14,7 +14,14 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Sugam",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3500/getDishes"
 			},
 			"response": []
 		},
