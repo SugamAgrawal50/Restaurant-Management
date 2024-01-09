@@ -52,7 +52,7 @@ const addDishes = async (req, res) => {
                     availableQuantity: req.body.availableQuantity,
                     pricePerItem:req.body.pricePerItem
                 })
-                res.status(201).json(result)
+                res.status(201).json({"message":"Dish added successfully","dish":result})
             } catch (err) {
                 console.error(err)
             }
