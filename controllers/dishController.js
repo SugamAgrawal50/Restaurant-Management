@@ -58,7 +58,7 @@ const addDishes = async (req, res) => {
             }
         }
     } else {
-        res.status(400).json({'message':'All Fields required'})
+        res.status(412).json({'message':'All Fields required'})
     }
 }
 const deleteDish = async (req, res) => {
@@ -67,7 +67,7 @@ const deleteDish = async (req, res) => {
         if(check[0]){
             try {
                 const result = await Dishes.findOneAndDelete({dishName:req.body.dishName})
-                res.status(200).json({"Message":"Dish Deleted successfully"})
+                res.status(200).json({"message":"Dish Deleted successfully"})
             } catch (err) {
                 console.error(err)
             }
@@ -75,7 +75,7 @@ const deleteDish = async (req, res) => {
             res.status(412).json({"message":"Dish does not exists"})
         }
     } else {
-        res.status(400).json({'message':'Dish Name required'})
+        res.status(412).json({'message':'Dish Name required'})
     }
 }
 const updateDish = async (req, res) => {
@@ -85,7 +85,7 @@ const updateDish = async (req, res) => {
             let quant = parseInt(check[0].availableQuantity) + parseInt(req?.body?.availableQuantity)
             try {
                 const result = await Dishes.findOneAndUpdate({dishName:req.body.dishName}, {availableQuantity: quant, pricePerItem:req.body.pricePerItem})
-                res.status(200).json({"Message":"Dish Updated Successfully"})
+                res.status(200).json({"message":"Dish Updated Successfully", "dish":result})
             } catch (err) {
                 console.error(err)
             }
@@ -93,7 +93,7 @@ const updateDish = async (req, res) => {
             res.status(412).json({"message":"Dish does not exists"})
         }
     } else {
-        res.status(400).json({'message':'DishName, Quantity and Price are required'})
+        res.status(412).json({'message':'DishName, Quantity and Price are required'})
     }
 }
 const purchaseDish = async (req, res) => {
@@ -108,7 +108,7 @@ const purchaseDish = async (req, res) => {
     if(req?.body?.dishArray && req?.body?.amountPaid) {
         await checkPurshaseValid(req,res);
         if(valid==='invalid') {
-            res.status(412).json({"Message":`${DishName} not exists`})
+            res.status(412).json({"message":`${DishName} not exists`})
         } else {
             for (const food of req.body.dishArray) {
                 const result = await Dishes.findOne({dishName: food.dishName}).exec()
@@ -117,7 +117,7 @@ const purchaseDish = async (req, res) => {
                 if(valid === '1') {
                     completed=0;
                     try {
-                        res.status(412).json({"Message":`${DishName} not available`})
+                        res.status(412).json({"message":`${DishName} not available`})
                         break;
                     } catch (err) {
                         console.error(err)
@@ -125,7 +125,7 @@ const purchaseDish = async (req, res) => {
                 } else if (valid === '2') {
                     completed=0;
                     try{
-                        res.status(412).json({"Message":`Amount Paid is less than total bill`})
+                        res.status(412).json({"message":`Amount Paid is less than total bill`})
                         break;
                     } catch (err) {
                         console.error(err)
@@ -139,12 +139,12 @@ const purchaseDish = async (req, res) => {
             if (completed && valid === '0') {
                 amountCollected = parseInt(amountCollected) + parseInt(amountrequired)
                 await client.set('amountCollected',parseInt(amountCollected))
-                res.status(200).json({"Message":`Change to be returned ${parseInt(amountRecieved) - parseInt(amountrequired)}`})
+                res.status(200).json({"message":`Change to be returned ${parseInt(amountRecieved) - parseInt(amountrequired)}`})
             }
         }
     } else {
         try{
-            res.status(412).json({"Message": 'Atleast 1 dish & amount paid required'})
+            res.status(412).json({"message": 'Atleast 1 dish & amount paid required'})
         } catch (err) {
             console.error(err)
         }
