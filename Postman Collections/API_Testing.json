@@ -42,7 +42,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dishName\":\"Samosa\",\r\n    \"servesPeople\":\"10\",\r\n    \"availableQuantity\":\"20\",\r\n    \"pricePerItem\": 10,\r\n    \"dishType\": \"Starter\"\r\n}",
+					"raw": "{\r\n    \"dishName\":\"Roti\",\r\n    \"servesPeople\":\"10\",\r\n    \"availableQuantity\":\"20\",\r\n    \"pricePerItem\": 10,\r\n    \"dishType\": \"Starter\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,7 +54,7 @@
 			"response": []
 		},
 		{
-			"name": "DeleteDIsh",
+			"name": "DeleteDish",
 			"id": "e2987a2f-4a7d-44c0-9255-31827ed87bf8",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -70,14 +70,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"dishName\":\"Samosa\"}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:3500/deleteDish"
+				"url": "http://localhost:3500/deleteDish/Roti"
 			},
 			"response": []
 		},
