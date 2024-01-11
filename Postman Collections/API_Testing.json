@@ -87,16 +87,7 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "http://localhost:3500/deleteDish/Roti"
+				"url": "http://localhost:3500/deleteDish/chapati"
 			},
 			"response": []
 		},
