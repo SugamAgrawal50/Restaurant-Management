@@ -61,6 +61,23 @@ const addDishes = async (req, res) => {
         res.status(412).json({'message':'All Fields required'})
     }
 }
+const getDishByID = async (req, res) => {
+    if(req?.params?.dishName) {
+        const check = await Dishes.find({dishName:req.params.dishName}) 
+        if(check[0]){
+            try {
+                const result = await Dishes.findOne({dishName:req.params.dishName})
+                res.status(200).json({"message":"Dish fetched successfully", "dish":result})
+            } catch (err) {
+                console.error(err)
+            }
+        } else {
+            res.status(412).json({"message":"Dish does not exists"})
+        }
+    } else {
+        res.status(412).json({'message':'Dish Name required'})
+    }
+}
 const deleteDish = async (req, res) => {
     if(req?.params?.dishName) {
         const check = await Dishes.find({dishName:req.params.dishName}) 
@@ -156,5 +173,6 @@ module.exports = {
     addDishes,
     deleteDish,
     updateDish,
+    getDishByID,
     purchaseDish
 }

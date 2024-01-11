@@ -27,6 +27,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(cors());
 
 app.get('/getDishes',[auth,urlencodedParser ], dishController.getAllDishes);
+app.get('/getDish/:dishName',[auth,urlencodedParser, checkValid ] , dishController.getDishByID);
 app.post('/addDish',[auth,urlencodedParser, checkValid ] , dishController.addDishes);
 app.delete('/deleteDish/:dishName',[auth,urlencodedParser, checkValid ] , dishController.deleteDish);
 app.put('/updateDish',[auth,urlencodedParser, checkValid ] , dishController.updateDish);
