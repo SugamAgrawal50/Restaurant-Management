@@ -26,6 +26,25 @@
 			"response": []
 		},
 		{
+			"name": "GetDIsh",
+			"id": "f4dc3345-654b-4321-b08a-76c93cd72f16",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Sugam",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3500/getDish/Roti"
+			},
+			"response": []
+		},
+		{
 			"name": "AddDish",
 			"id": "bab28a7a-6299-4433-ad59-73eb8cb952c4",
 			"protocolProfileBehavior": {
@@ -42,7 +61,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dishName\":\"Roti\",\r\n    \"servesPeople\":\"10\",\r\n    \"availableQuantity\":\"20\",\r\n    \"pricePerItem\": 10,\r\n    \"dishType\": \"Starter\"\r\n}",
+					"raw": "{\r\n    \"dishName\":\"Chapati\",\r\n    \"servesPeople\":\"10\",\r\n    \"availableQuantity\":\"20\",\r\n    \"pricePerItem\": 10,\r\n    \"dishType\": \"main course\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
