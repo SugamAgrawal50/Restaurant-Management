@@ -28,7 +28,7 @@ app.use(cors());
 
 app.get('/getDishes',[auth,urlencodedParser ], dishController.getAllDishes);
 app.post('/addDish',[auth,urlencodedParser, checkValid ] , dishController.addDishes);
-app.delete('/deleteDish',[auth,urlencodedParser, checkValid ] , dishController.deleteDish);
+app.delete('/deleteDish/:dishName',[auth,urlencodedParser, checkValid ] , dishController.deleteDish);
 app.put('/updateDish',[auth,urlencodedParser, checkValid ] , dishController.updateDish);
 app.post('/purchaseDish',[auth,urlencodedParser, checkValid ] , dishController.purchaseDish);
 

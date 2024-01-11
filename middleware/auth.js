@@ -5,7 +5,7 @@ const auth = (req,res,next) => {
         if (req.headers.authorization === AUTHKEY){
             next();
         } else {
-            res.status(412).send("Auth key Invalid")
+            res.status(412).json({"error":"Auth key Invalid"})
         }
     } catch {
         res.status(401).json(

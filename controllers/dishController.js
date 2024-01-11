@@ -62,11 +62,11 @@ const addDishes = async (req, res) => {
     }
 }
 const deleteDish = async (req, res) => {
-    if(req?.body?.dishName) {
-        const check = await Dishes.find({dishName:req.body.dishName}) 
+    if(req?.params?.dishName) {
+        const check = await Dishes.find({dishName:req.params.dishName}) 
         if(check[0]){
             try {
-                const result = await Dishes.findOneAndDelete({dishName:req.body.dishName})
+                const result = await Dishes.findOneAndDelete({dishName:req.params.dishName})
                 res.status(200).json({"message":"Dish Deleted successfully"})
             } catch (err) {
                 console.error(err)
