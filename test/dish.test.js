@@ -21,7 +21,7 @@ beforeAll(async () => {
 //GET API
     describe('/GET Dishes', () => {
         it('it should get all dishes', async () => {
-            const res = await request(app).get("/getDishes").set({"Authorization":"Sugam"});
+            const res = await request(app).get("/dish").set({"Authorization":"Sugam"});
             expect(res.statusCode).toBe(200);
             expect(res.body.length).toBeGreaterThan(0);
             
@@ -31,7 +31,7 @@ beforeAll(async () => {
 //ADD DISHES
     describe("/POST Dish", () =>{
       it("it should add a dish ", async() => {
-          const res = await request(app).post("/addDish").set({"Authorization":"Sugam"})
+          const res = await request(app).post("/dish").set({"Authorization":"Sugam"})
             .send({
               "dishName":"ulta",
               "servesPeople":"10",
@@ -52,7 +52,7 @@ beforeAll(async () => {
 //UPDATE DISHES
     describe('/UPDATE Dish', () => {
       it('it should change the dish price and increase available quantity by 5', async () => {
-          const res = await request(app).put('/updateDish').set({"Authorization":"Sugam"})
+          const res = await request(app).put('/dish').set({"Authorization":"Sugam"})
             .send({
               "dishName":"Roti", 
               "pricePerItem":20,
@@ -66,7 +66,7 @@ beforeAll(async () => {
       });
 
       it('it should say dish does not exists', async () => {
-        const res = await request(app).put('/updateDish').set({"Authorization":"Sugam"})
+        const res = await request(app).put('/dish').set({"Authorization":"Sugam"})
         .send({
           "dishName":"scssdv", 
           "pricePerItem":20,
@@ -77,7 +77,7 @@ beforeAll(async () => {
       });
 
       it('it should say dish dishname,price and quantity required', async () => {
-        const res = await request(app).put('/updateDish').set({"Authorization":"Sugam"})
+        const res = await request(app).put('/dish').set({"Authorization":"Sugam"})
         .send({});
         expect(res.statusCode).toBe(412);
         expect(res.body.message).toBe('DishName, Quantity and Price are required');
@@ -87,22 +87,15 @@ beforeAll(async () => {
 //DELETE APIs
     describe('/Delete Dish', () => {
       it('it should delete a dish', async () => {
-        const res = await request(app).delete("/deleteDish").set({"Authorization":"Sugam"})
-        .send({'dishName':"ulta"})
+        const res = await request(app).delete("/dish/ulta").set({"Authorization":"Sugam"})
+        // .send({'dishName':"ulta"})
           expect(res.statusCode).toBe(200);
           expect(res.body.message).toBe("Dish Deleted successfully");
       });
 
-      it('it should get should say enter a dish name to delete', async () => {
-        const res = await request(app).delete("/deleteDish").set({"Authorization":"Sugam"})
-        .send({})
-          expect(res.statusCode).toBe(412);
-          expect(res.body.message).toBe("Dish Name required");
-      });
-
       it('it should get should say dish does not exist', async () => {
-          const res = await request(app).delete("/deleteDish").set({"Authorization":"Sugam"})
-                        .send({'dishName':"acbac"});
+          const res = await request(app).delete("/dish/abaca").set({"Authorization":"Sugam"})
+                        // .send({'dishName':"acbac"});
           expect(res.statusCode).toBe(412);
           expect(res.body.message).toBe("Dish does not exists");
       });

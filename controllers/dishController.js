@@ -30,7 +30,9 @@ const checkPurshaseValid = async (req, res) => {
     }
 }
 const getAllDishes = async (req, res) => {
-    const dishes = await Dishes.find();
+    const {page, limit} = req.query;
+    const skip = (page-1)*limit;
+    const dishes = await Dishes.find().skip(skip).limit(limit);
     if(!dishes[0]) return res.json({"message":"No Data Found"})
     res.json(dishes)
 }
@@ -63,10 +65,10 @@ const addDishes = async (req, res) => {
 }
 const getDishByID = async (req, res) => {
     if(req?.params?.dishName) {
-        const check = await Dishes.find({dishName:req.params.dishName}) 
+        const check = await Dishes.find({dishName:{ $regex: new RegExp('^' + req.params.dishName + '$' , 'i') }}) 
         if(check[0]){
             try {
-                const result = await Dishes.findOne({dishName:req.params.dishName})
+                const result = await Dishes.findOne({dishName:{ $regex: new RegExp('^' + req.params.dishName + '$' , 'i') }})
                 res.status(200).json({"message":"Dish fetched successfully", "dish":result})
             } catch (err) {
                 console.error(err)
@@ -80,10 +82,11 @@ const getDishByID = async (req, res) => {
 }
 const deleteDish = async (req, res) => {
     if(req?.params?.dishName) {
-        const check = await Dishes.find({dishName:req.params.dishName}) 
+        const check = await Dishes.find({dishName:{ $regex: new RegExp('^' + req.params.dishName + '$' , 'i') }}) 
+        console.log(check);
         if(check[0]){
             try {
-                const result = await Dishes.findOneAndDelete({dishName:req.params.dishName})
+                await Dishes.findOneAndDelete({dishName: { $regex: new RegExp('^' + req.params.dishName + '$' , 'i')}});
                 res.status(200).json({"message":"Dish Deleted successfully"})
             } catch (err) {
                 console.error(err)
@@ -129,7 +132,6 @@ const purchaseDish = async (req, res) => {
         } else {
             for (const food of req.body.dishArray) {
                 const result = await Dishes.findOne({dishName: food.dishName}).exec()
-                // const result = await Dishes.findOne({dishName: {'$regex': food.dishName,$options:'i'}}).exec()
                 amountrequired= parseInt(amountrequired) + (parseInt(result.pricePerItem)*parseInt(food.quantity))
                 if(valid === '1') {
                     completed=0;
