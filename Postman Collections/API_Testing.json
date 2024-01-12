@@ -21,7 +21,27 @@
 						"type": "text"
 					}
 				],
-				"url": "http://localhost:3500/getDishes"
+				"url": {
+					"raw": "http://localhost:3500/dish?page=1&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3500",
+					"path": [
+						"dish"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -40,7 +60,7 @@
 						"type": "text"
 					}
 				],
-				"url": "http://localhost:3500/getDish/Roti"
+				"url": "http://localhost:3500/dish/roti"
 			},
 			"response": []
 		},
@@ -61,14 +81,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dishName\":\"Chapati\",\r\n    \"servesPeople\":\"10\",\r\n    \"availableQuantity\":\"20\",\r\n    \"pricePerItem\": 10,\r\n    \"dishType\": \"main course\"\r\n}",
+					"raw": "{\r\n    \"dishName\":\"Pizza\",\r\n    \"servesPeople\":\"10\",\r\n    \"availableQuantity\":\"20\",\r\n    \"pricePerItem\": 10,\r\n    \"dishType\": \"main course\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:3500/addDish"
+				"url": "http://localhost:3500/dish"
 			},
 			"response": []
 		},
@@ -87,7 +107,7 @@
 						"type": "text"
 					}
 				],
-				"url": "http://localhost:3500/deleteDish/chapati"
+				"url": "http://localhost:3500/dish/pizza"
 			},
 			"response": []
 		},
@@ -108,14 +128,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dishName\":\"Roti\",\r\n    \"availableQuantity\":\"5\",\r\n    \"pricePerItem\":\"10\"\r\n}",
+					"raw": "{\r\n    \"dishName\":\"Roti\",\r\n    \"availableQuantity\":\"5\",\r\n    \"pricePerItem\":\"20\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:3500/updateDish"
+				"url": "http://localhost:3500/dish"
 			},
 			"response": []
 		},
@@ -136,14 +156,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"amountPaid\":50,\r\n    \"dishArray\":[\r\n        {\r\n            \"dishName\":\"Roti\",\r\n            \"quantity\":5\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"amountPaid\":500,\r\n    \"dishArray\":[\r\n        {\r\n            \"dishName\":\"roti\",\r\n            \"quantity\":5\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:3500/purchaseDish"
+				"url": "http://localhost:3500/dish/buy"
 			},
 			"response": []
 		}
