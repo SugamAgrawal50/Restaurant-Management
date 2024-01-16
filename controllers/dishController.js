@@ -83,7 +83,6 @@ const getDishByID = async (req, res) => {
 const deleteDish = async (req, res) => {
     if(req?.params?.dishName) {
         const check = await Dishes.find({dishName:{ $regex: new RegExp('^' + req.params.dishName + '$' , 'i') }}) 
-        console.log(check);
         if(check[0]){
             try {
                 await Dishes.findOneAndDelete({dishName: { $regex: new RegExp('^' + req.params.dishName + '$' , 'i')}});
